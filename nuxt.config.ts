@@ -17,4 +17,7 @@ export default defineNuxtConfig({
     "@nuxt/scripts",
     "@nuxt/ui",
   ],
+  nitro: {
+    static: true,
+  },
 });
