@@ -44,7 +44,8 @@
       </nav>
 
       <!-- Кнопка Заказать -->
-      <button
+      <a
+        href="/checkout"
         class="bg-bone hidden md:flex items-center uppercase font-semibold text-text px-[clamp(1rem,1cqw,9rem)] py-[clamp(0.5rem,0.5cqw,9rem)] text-[clamp(1rem,1cqw,9rem)] rounded-4xl gap-[clamp(1rem,0.5cqw,9rem)]"
       >
         <Icon
@@ -52,7 +53,7 @@
           class="text-[clamp(1rem,1.5cqw,9rem)] text-text"
         />
         Заказать
-      </button>
+      </a>
 
       <!-- Бургер (mobile) -->
       <button @click="menuOpen = !menuOpen" class="md:hidden">
