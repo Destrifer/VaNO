@@ -10,21 +10,35 @@ const email = ref("");
 const message = ref("");
 const submitted = ref(false);
 
-const submitOrder = () => {
+const submitOrder = async () => {
+  message.value = "";
+
   if (!name.value || !phone.value || !email.value) {
     message.value = "Пожалуйста, заполните все поля.";
     return;
   }
 
-  // Пример: выводим данные в консоль (или отправляем через EmailJS)
-  console.log("Имя:", name.value);
-  console.log("Телефон:", phone.value);
-  console.log("Email:", email.value);
-  console.log("Корзина:", cart.items);
+  try {
+    const response = await $fetch("/api/send-order", {
+      method: "POST",
+      body: {
+        name: name.value,
+        phone: phone.value,
+        email: email.value,
+        items: cart.items,
+      },
+    });
 
-  submitted.value = true;
-  message.value = "Спасибо! Ваш заказ отправлен.";
-  cart.clearCart();
+    if (response.ok) {
+      submitted.value = true;
+      message.value = "Спасибо! Ваш заказ отправлен.";
+      cart.clearCart();
+    } else {
+      message.value = "Ошибка при отправке письма: " + response.error;
+    }
+  } catch (err) {
+    message.value = "Ошибка сети или сервера: " + err.message;
+  }
 };
 </script>
 
