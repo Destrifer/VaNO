@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed } from "vue";
 import settings from "~/assets/settings.json";
+import { useAddToCart } from "~/composables/useAddToCart";
 
 const printPrices = settings.print_price;
 const cuttingPrices = settings.cutting_price;
@@ -12,6 +13,8 @@ const materialKey = ref("paper_sticker");
 const laminationKey = ref("soft_touch");
 const useLamination = ref(true);
 const correctionMessage = ref("");
+
+const { addProduct } = useAddToCart();
 
 const getTierPrice = (tiers, value) =>
   tiers.find((t) => value <= t.to)?.price ?? tiers.at(-1).price;
@@ -80,9 +83,19 @@ const handleOrder = () => {
   if (currentTirazh !== tirazh.value) {
     correctionMessage.value = `Тираж был увеличен до ${currentTirazh} для соблюдения минимальной суммы заказа в 2000 ₽.`;
     tirazh.value = currentTirazh;
-  } else {
-    alert(`Заказ принят. Итоговая сумма: ${total} ₽`);
   }
+
+  // добавляем в корзину через общую функцию
+  addProduct({
+    title: "Круглые наклейки",
+    options: {
+      тираж: tirazh.value,
+      диаметр: diameter.value,
+      материал: materialKey.value,
+      ламинация: useLamination.value ? laminationKey.value : "без ламинации",
+    },
+    price: result.value.total,
+  });
 };
 </script>
 
