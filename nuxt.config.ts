@@ -18,4 +18,9 @@ export default defineNuxtConfig({
     "@nuxt/ui",
     "@pinia/nuxt",
   ],
+  routeRules: {
+    // prerender index route by default
+
+    "/": { prerender: true },
+  },
 });
