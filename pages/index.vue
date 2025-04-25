@@ -18,7 +18,7 @@
       to="/"
       class="inline-block bg-primary text-text font-semibold px-6 py-3 rounded-2xl hover:bg-yellow-400 transition mt-6"
     >
-      Перейти в каталог
+      Перейти в каталог!
     </NuxtLink>
   </section>
 </template>
