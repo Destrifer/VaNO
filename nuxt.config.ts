@@ -1,8 +1,4 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
-import tailwindcss from "@tailwindcss/vite";
-
 export default defineNuxtConfig({
-  compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
   css: ["~/assets/css/main.css"],
   vite: {
@@ -19,8 +15,7 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
   ],
   routeRules: {
-    // prerender index route by default
-
     "/": { prerender: true },
+    "/checkout": { prerender: true }, // ← обязательно добавить
   },
 });
