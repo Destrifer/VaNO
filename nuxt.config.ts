@@ -19,6 +19,6 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
   ],
   nitro: {
-    static: true,
+    preset: "vercel-edge",
   },
 });

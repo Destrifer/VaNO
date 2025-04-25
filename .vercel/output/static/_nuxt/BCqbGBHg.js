@@ -1,0 +1,1 @@
+import{q as e}from"./DoWHJ2FZ.js";const r=e("cart",{state:()=>({items:[]}),actions:{addToCart(t){this.items.push(t)},removeFromCart(t){this.items.splice(t,1)},clearCart(){this.items=[]}},persist:!0});export{r as u};
